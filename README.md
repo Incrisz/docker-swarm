@@ -19,6 +19,25 @@ wget https://raw.githubusercontent.com/Incrisz/docker-swarm/main/install-docker.
 chmod +x install-docker.sh
 ./install-docker.sh
 ```
+### Authenticate Docker to GHCR
+
+```bash
+echo <YOUR_GHCR_PAT> | docker login ghcr.io -u <your_github_username> --password-stdin
+
+sudo docker secret create ghcr_auth_config ~/.docker/config.json
+
+```
+### update your compose file
+
+```bash
+    ports:
+      - "8080:80"
+    secrets:
+      - source: ghcr_auth_config
+        target: /root/.docker/config.json
+
+```
+
 
 ## What the Script Does
 
