@@ -22,7 +22,7 @@ chmod +x install-docker.sh
 ### Authenticate Docker to GHCR
 
 ```bash
-echo <YOUR_GHCR_PAT> | docker login ghcr.io -u <your_github_username> --password-stdin
+sudo echo <YOUR_GHCR_PAT> | docker login ghcr.io -u <your_github_username> --password-stdin
 
 sudo docker secret create ghcr_auth_config ~/.docker/config.json
 
