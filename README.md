@@ -27,7 +27,7 @@ echo <YOUR_GHCR_PAT> | docker login ghcr.io -u <your_github_username> --password
 sudo docker secret create ghcr_auth_config ~/.docker/config.json
 
 ```
-### update your compose file
+### update your compose file(app)
 
 ```bash
     ports:
@@ -35,6 +35,14 @@ sudo docker secret create ghcr_auth_config ~/.docker/config.json
     secrets:
       - source: ghcr_auth_config
         target: /root/.docker/config.json
+
+```
+### update your compose file(last end)
+
+```bash
+secrets:
+  ghcr_auth_config:
+    external: true
 
 ```
 
