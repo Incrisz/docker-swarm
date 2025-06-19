@@ -52,7 +52,7 @@ secrets:
 sudo docker stack rm php-db
 
 # 2. Ensure authentication on ALL swarm nodes
-sudo docker login ghcr.io -u incrisz -p ghp_9rPM99PCWCbIZv7AgO7xoN0WEvn2UN49pmoP
+sudo docker login ghcr.io -u incrisz -p ghp_9rPbIZv7AgO7xoN0N49pmoP
 
 # 3. Pre-pull the image on ALL nodes (run on each node)
 sudo docker pull ghcr.io/incrisz/ghcr-php:latest
