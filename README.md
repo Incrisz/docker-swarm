@@ -45,8 +45,21 @@ secrets:
     external: true
 
 ```
+### quick debug run
 
+```bash
+# 1. Remove the current stack
+sudo docker stack rm php-db
 
+# 2. Ensure authentication on ALL swarm nodes
+sudo docker login ghcr.io -u incrisz -p ghp_9rPM99PCWCbIZv7AgO7xoN0WEvn2UN49pmoP
+
+# 3. Pre-pull the image on ALL nodes (run on each node)
+sudo docker pull ghcr.io/incrisz/ghcr-php:latest
+
+# 4. Use the fixed compose file (without secrets for auth)
+sudo docker stack deploy -c php-compose-fixed.yml php-app
+```
 ## What the Script Does
 
 The installation script performs the following actions:
