@@ -19,7 +19,47 @@ wget https://raw.githubusercontent.com/Incrisz/docker-swarm/main/install-docker.
 chmod +x install-docker.sh
 ./install-docker.sh
 ```
+### Authenticate Docker to GHCR
 
+```bash
+sudo echo <YOUR_GHCR_PAT> | docker login ghcr.io -u <your_github_username> --password-stdin
+
+sudo docker secret create ghcr_auth_config ~/.docker/config.json
+
+```
+### update your compose file(app)
+
+```bash
+    ports:
+      - "8080:80"
+    secrets:
+      - source: ghcr_auth_config
+        target: /root/.docker/config.json
+
+```
+### update your compose file(last end)
+
+```bash
+secrets:
+  ghcr_auth_config:
+    external: true
+
+```
+### quick debug run
+
+```bash
+# 1. Remove the current stack
+sudo docker stack rm php-db
+
+# 2. Ensure authentication on ALL swarm nodes
+sudo docker login ghcr.io -u incrisz -p ghp_9rPbIZv7AgO7xoN0N49pmoP
+
+# 3. Pre-pull the image on ALL nodes (run on each node)
+sudo docker pull ghcr.io/incrisz/ghcr-php:latest
+
+# 4. Use the fixed compose file (without secrets for auth)
+sudo docker stack deploy -c php-compose-fixed.yml php-app
+```
 ## What the Script Does
 
 The installation script performs the following actions:
