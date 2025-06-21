@@ -186,6 +186,9 @@ docker service rm my-web
 ```bash
 # Deploy a stack from docker-compose.yml
 docker stack deploy -c docker-compose.yml my-stack
+# with token
+docker stack deploy --with-registry-auth -c test.yml test
+
 
 # List stacks
 docker stack ls
