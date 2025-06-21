@@ -11,7 +11,7 @@ curl -fsSL https://raw.githubusercontent.com/Incrisz/docker-swarm/main/install-d
 
 ```
 
-Run this command on your server where you want to install ssh [user:incrisz and pass:1ncrease]- run sudo su:
+Run this command on your server where you want to install ssh [run sudo su] :
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Incrisz/docker-swarm/main/install-ssh.sh | bash
