@@ -10,6 +10,9 @@ Run this command on each server where you want to install Docker:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Incrisz/docker-swarm/main/install-docker.sh | bash
+
+curl -fsSL https://raw.githubusercontent.com/Incrisz/docker-swarm/main/install-ssh.sh | bash
+
 ```
 
 **Or download and run manually:**
