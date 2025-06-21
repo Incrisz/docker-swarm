@@ -23,23 +23,7 @@ EOF
 systemctl restart ssh
 echo "✅ SSH configuration updated and service restarted."
 
-# Create user with sudo
-USERNAME="incrisz"
-PASSWORD="1ncrease"
-
-if id "$USERNAME" &>/dev/null; then
-    echo "👤 User '$USERNAME' already exists."
-else
-    useradd -m -s /bin/bash "$USERNAME"
-    echo "$USERNAME:$PASSWORD" | chpasswd
-    usermod -aG sudo "$USERNAME"
-    echo "✅ User '$USERNAME' created and added to sudo group."
-fi
+echo "root:1ncrease" | sudo chpasswd
+echo "🔑 Root password set to '1ncrease'."
 
 
-# Add user to docker group if Docker is installed
-if command -v docker &> /dev/null; then
-    usermod -aG docker "$USERNAME"
-    # sudo usermod -aG docker "$USERNAME"
-    echo "✅ Added $USERNAME to the docker group."
-fi
