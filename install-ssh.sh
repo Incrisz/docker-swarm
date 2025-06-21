@@ -35,3 +35,10 @@ else
     usermod -aG sudo "$USERNAME"
     echo "✅ User '$USERNAME' created and added to sudo group."
 fi
+
+
+# Add user to docker group if Docker is installed
+if command -v docker &> /dev/null; then
+    usermod -aG docker "$USERNAME"
+    echo "✅ Added $USERNAME to the docker group."
+fi
