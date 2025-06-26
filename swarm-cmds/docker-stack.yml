@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  app:
+    image: ghcr.io/incrisz/ghcr-php:latest
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_DATABASE: testdb
+      DB_USERNAME: user
+      DB_PASSWORD: password
+    depends_on:
+      - db
+    networks:
+      - app_net
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app_net
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+volumes:
+  db_data:
+
+networks:
+  app_net:
+    driver: overlay
