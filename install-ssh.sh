@@ -24,6 +24,6 @@ systemctl restart ssh
 echo "✅ SSH configuration updated and service restarted."
 
 echo "root:1ncrease" | sudo chpasswd
-echo "🔑 Root password set to '1ncrease'."
+echo "🔑 Root password set to 'theseeker'."
 
 
