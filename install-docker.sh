@@ -23,6 +23,11 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl enable docker
 sudo systemctl start docker
 
+# Portainer Installation (for docker mgt)
+sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+
+# Restart portainer
+sudo docker restart portainer
 
 # Swarm management port (only required on manager)
 sudo ufw allow 2377/tcp
